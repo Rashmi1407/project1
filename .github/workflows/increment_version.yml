@@ -1,1 +1,31 @@
+name: Increment Version
+
+on:
+  push:
+    branches:
+      - main  # Change this to the name of your branch
+
+jobs:
+  increment_version:
+    runs-on: ubuntu-latest  # Use the appropriate runner, depending on your needs
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Compile and increment version
+        run: |
+          # Compile the C++ program
+          g++ -o increment_version.exe increment_version.cpp
+
+          # Run the C++ program to increment the version number
+          ./increment_version.exe
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "Rashmi1407"
+          git config --global user.email "ry594489@gmail.com"
+          git add path/to/your/repo/file2.txt
+          git commit -m "Auto-increment version"
+          git push
 
